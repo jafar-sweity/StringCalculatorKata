@@ -44,5 +44,13 @@ namespace StringCalculatorKata.Test
             var result = calculator.Add("1\n2,3");
             Assert.Equal(6, result);
         }
+
+        [Fact]
+        public void Add_CustomDelimiter_ReturnsSum()
+        {
+            var calculator = new StringCalculator();
+            var result = calculator.Add("//;\n1;2;3");
+            Assert.Equal(6, result);
+        }
     }
 }

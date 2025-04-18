@@ -14,9 +14,19 @@ namespace StringCalculatorKata.Services
             if (string.IsNullOrEmpty(numbers))
                 return 0;
 
-            var split = numbers.Split(',', '\n');
+            var delimiters = new[] { ',', '\n' };
 
-            return split.Select(int.Parse).Sum();
+            if (numbers.StartsWith("//"))
+            {
+                var customDelimiter = numbers[2];
+                delimiters = [customDelimiter];
+                numbers = numbers[4..];
+            }
+
+            var numberList = numbers.Split(delimiters, StringSplitOptions.None)
+                                     .Select(int.Parse)
+                                     .Sum();
+            return numberList;
         }
     }
 }
