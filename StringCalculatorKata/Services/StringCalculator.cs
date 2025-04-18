@@ -14,7 +14,7 @@ namespace StringCalculatorKata.Services
             if (string.IsNullOrEmpty(numbers))
                 return 0;
 
-            var split = numbers.Split(',');
+            var split = numbers.Split(',', '\n');
 
             return split.Select(int.Parse).Sum();
         }
