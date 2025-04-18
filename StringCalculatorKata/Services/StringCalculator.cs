@@ -14,7 +14,12 @@ namespace StringCalculatorKata.Services
             if (string.IsNullOrEmpty(numbers))
                 return 0;
 
-            return int.Parse(numbers);
+            var split = numbers.Split(',');
+
+            if (split.Length == 1)
+                return int.Parse(split[0]);
+
+            return int.Parse(split[0]) + int.Parse(split[1]);
         }
     }
 }

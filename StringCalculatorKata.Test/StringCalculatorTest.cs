@@ -20,5 +20,13 @@ namespace StringCalculatorKata.Test
             var result = calculator.Add("1");
             Assert.Equal(1, result);
         }
+
+        [Fact]
+        public void Add_TwoNumbersSeparatedByComma_ReturnsSum()
+        {
+            var calculator = new StringCalculator();
+            var result = calculator.Add("1,2");
+            Assert.Equal(3, result);
+        }
     }
 }
