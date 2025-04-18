@@ -16,10 +16,7 @@ namespace StringCalculatorKata.Services
 
             var split = numbers.Split(',');
 
-            if (split.Length == 1)
-                return int.Parse(split[0]);
-
-            return int.Parse(split[0]) + int.Parse(split[1]);
+            return split.Select(int.Parse).Sum();
         }
     }
 }
