@@ -12,16 +12,9 @@ namespace StringCalculatorKata.Services
         public int Add(string numbers)
         {
             if (string.IsNullOrEmpty(numbers))
-            {
                 return 0;
-            }
 
-            var split = numbers.Split(',');
-
-            if (split.Length == 1)
-                return int.Parse(split[0]);
-
-            return int.Parse(split[0])+ int.Parse(split[1]);
+            return int.Parse(numbers);
         }
     }
 }
