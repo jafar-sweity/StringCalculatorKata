@@ -24,7 +24,7 @@ namespace StringCalculatorKata.Services
             }
 
             var numberList = numbers.Split(delimiters, StringSplitOptions.None);
-            var parsedNumbers = numberList.Select(int.Parse).ToList();
+            var parsedNumbers = numberList.Select(int.Parse).Where(n=> n<1000).ToList();
             var negativeNumbers = parsedNumbers.Where(n => n < 0).ToList();
 
             if (negativeNumbers.Count !=0)
