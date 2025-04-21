@@ -1,3 +1,4 @@
+using StringCalculatorKata.Messages;
 using StringCalculatorKata.Services;
 
 namespace StringCalculatorKata.Test
@@ -34,7 +35,8 @@ namespace StringCalculatorKata.Test
             var ex = Assert.Throws<Exception>(() => calculator.Add("1,-2,3,-4"));
 
             // Assert
-            Assert.Equal("Negative numbers not allowed: -2, -4", ex.Message);
+            var expectedMessage = string.Format(ErrorMessages.NegativeNumbersNotAllowed, "-2, -4");
+            Assert.Equal(expectedMessage, ex.Message);
         }
     }
 }

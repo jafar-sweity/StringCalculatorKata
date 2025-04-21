@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using StringCalculatorKata.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace StringCalculatorKata.Services
                 numbers = numbers[4..];
             }
 
-            var numberList = numbers.Split(delimiters, StringSplitOptions.None); 
+            var numberList = numbers.Split(delimiters, StringSplitOptions.None);
             var parsedNumbers = new List<int>();
 
             foreach (var number in numberList)
@@ -42,7 +43,7 @@ namespace StringCalculatorKata.Services
             if (negativeNumbers.Count !=0)
             {
                 var negativeNumbersString = string.Join(", ", negativeNumbers);
-                throw new Exception($"Negative numbers not allowed: {negativeNumbersString}");
+                throw new Exception(string.Format(ErrorMessages.NegativeNumbersNotAllowed,negativeNumbers));
             }
 
             return parsedNumbers.Sum();
