@@ -4,63 +4,37 @@ namespace StringCalculatorKata.Test
 {
     public class StringCalculatorTest
     {
-        [Fact]
-        public void Add_EmptyString_ReturnsZero()
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData("1", 1)]
+        [InlineData("1,2", 3)]
+        [InlineData("1,2,3,4,5", 15)]
+        [InlineData("1\n2,3", 6)]
+        [InlineData("//;\n1;2;3", 6)]
+        [InlineData("2,1001,6", 8)]
+        public void Add_ShouldReturnCorrectSum_ForValidInputs(string input, int expected)
         {
-            var calc = new StringCalculator();
-            var result = calc.Add("");
-            Assert.Equal(0, result);
+            // Arrange
+            var calculator = new StringCalculator();
 
+            // Act
+            var result = calculator.Add(input);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
 
         [Fact]
-        public void Add_SingleNumber_ReturnsThatNumber()
+        public void Add_ShouldThrowException_ForNegativeNumbers()
         {
+            // Arrange
             var calculator = new StringCalculator();
-            var result = calculator.Add("1");
-            Assert.Equal(1, result);
-        }
 
-        [Fact]
-        public void Add_TwoNumbersSeparatedByComma_ReturnsSum()
-        {
-            var calculator = new StringCalculator();
-            var result = calculator.Add("1,2");
-            Assert.Equal(3, result);
-        }
-
-        [Fact]
-        public void Add_MultipleNumbersSeparatedByComma_ReturnsSum()
-        {
-            var calculator = new StringCalculator();
-            var result = calculator.Add("1,2,3,4,5");
-            Assert.Equal(15, result);
-        }
-
-        [Fact]
-        public void Add_NumbersWithNewLineDelimiter_ReturnsSum()
-        {
-            var calculator = new StringCalculator();
-            var result = calculator.Add("1\n2,3");
-            Assert.Equal(6, result);
-        }
-
-        [Fact]
-        public void Add_CustomDelimiter_ReturnsSum()
-        {
-            var calculator = new StringCalculator();
-            var result = calculator.Add("//;\n1;2;3");
-            Assert.Equal(6, result);
-        }
-
-        [Fact]
-        public void Add_NegativeNumbers_ThrowsExceptionWithAllNegatives()
-        {
-            var calculator = new StringCalculator();
+            // Act
             var ex = Assert.Throws<Exception>(() => calculator.Add("1,-2,3,-4"));
 
+            // Assert
             Assert.Equal("Negative numbers not allowed: -2, -4", ex.Message);
         }
-
     }
 }
