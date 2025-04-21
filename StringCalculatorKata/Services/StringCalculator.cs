@@ -23,8 +23,20 @@ namespace StringCalculatorKata.Services
                 numbers = numbers[4..];
             }
 
-            var numberList = numbers.Split(delimiters, StringSplitOptions.None);
-            var parsedNumbers = numberList.Select(int.Parse).Where(n=> n<1000).ToList();
+            var numberList = numbers.Split(delimiters, StringSplitOptions.None); 
+            var parsedNumbers = new List<int>();
+
+            foreach (var number in numberList)
+            {
+                if (int.TryParse(number, out int parsedNumber))
+                {
+                    if (parsedNumber <= 1000)
+                    {
+                        parsedNumbers.Add(parsedNumber);
+                    }
+                }
+            }
+
             var negativeNumbers = parsedNumbers.Where(n => n < 0).ToList();
 
             if (negativeNumbers.Count !=0)
